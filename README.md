@@ -23,6 +23,11 @@
 - Data Collection for 10 gestures
 - Trained Random Forest model with the 10 gestures
   - 30% accuracy achieved
+  - Update - 70% accuracy achieved but live detection works partially
+- Trained SVM model
+  - 50% accuracy achieved, live detction didnt perform as expected.
+- Trained XGBoost
+  - 33% accuracy achieved.
 
 ## Glen:
 
