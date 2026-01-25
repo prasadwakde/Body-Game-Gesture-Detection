@@ -1,55 +1,101 @@
-# Body-Game-Gesture-Detection
+## Gesture Control Karate System
 
-## Prasad:
+This project uses computer vision and machine learning to control a karate game using real-time body gestures. It captures your pose via a webcam, classifies the move (e.g., Punch, Kick, Crouch), and simulates the corresponding keyboard press.
 
-### Tasks Done:
+### Tryout the game on your own - [Karate Fighter Poki](https://poki.com/en/g/karate-fighter?msockid=3cd585d569666c481db3901368666d1a)
+ 
 
-- 4 Gesture Game Detection Code
-- Evaluation: 70 % accuracy with the live version
-- Data Collection for 10 gestures
-- Record time lag - camera to model to keyboard input
-- Evaluation of 10 gesture game
-- Reducing keypoints for each gesture, (Reducing noise)
 
-## Samrudhi:
 
-### Tasks Done:
+### GamePlay with Karate Fighter Game
+<video width="630" height="300" src="GamePlay.mp4" controls></video>
 
-- Evaluation of 4 gesture:
-  - 40 % accuracy with the recorded version
-  - 80% on the live version
-- Search and select Games
-- 10 Gesture Game Detection Code
-- Data Collection for 10 gestures
-- Trained Random Forest model with the 10 gestures
-  - 30% accuracy achieved
-  - Update - 70% accuracy achieved but live detection works partially
-- Trained SVM model
-  - 50% accuracy achieved, live detction didnt perform as expected.
-- Trained XGBoost
-  - 33% accuracy achieved.
+📋 Prerequisites
 
-## Glen:
+Ensure you have Python installed along with the required libraries:
+```
+pip install opencv-python mediapipe pandas numpy scikit-learn joblib pydirectinput
+```
 
-### Tasks Done:
+## 🚀 Usage Instructions
 
-- Select Games
-- Record time lag - camera to model to keyboard input
-- Data Collection for 10 gestures
-- Evaluation of 4 gesture
-  - 20% accuracy with the recorded version
-- ## Evaluation of 10 gesture
+Follow these three steps to set up and run the controller.
 
-## Tasks to be done (30/11/2025):
+### Step 1: Data Collection
+First, you need to record your own body gestures to create the dataset.
 
-- Decided the game (Final) - (06/12/2025) - DONE
-- Record time lag - camera to model to keyboard input (Prasad, Glen) - (06/12/2025) - DONE
-- Test Samrudhi's Evaluation (Glen, Prasad) - (06/12/2025)
-- Test Prasad's Evaluation (Glen, Samrudhi) - (06/12/2025) - DONE
-- Data Collection (keyponit) - (06/12/2025)
-  - Test Samrudhi's code (All)
-  - Other apporoach (All)
-- Model Training
-  - Prasad: Random Forest
-  - Samrudhi: Decision Trees
-  - Glen: KNN
+1. Run the collection script:
+
+```
+python optimized_collection.py
+```
+2. Select a Gesture: Press `N` to toggle between gestures (e.g., Punch, Kick, Jump).
+
+3. Record: Press `SPACE` to start.
+    - The system acts as a 10-second timer.
+    - After a 3-second countdown, perform the gesture continuously for 10 seconds.
+
+4. Repeat this for all 8 gestures to populate `karate_optimized_data.csv`
+
+
+
+
+### Step 2: Train the Model
+
+Once the data is collected, train the machine learning model.
+
+1. Run the training script:
+
+
+```
+python optimized_trainer.py
+```
+2. This script processes the CSV file, trains a KNN classifier, and exports the weights to `optimized_karate_model.pkl`.
+
+3. Note: Ensure the `.pkl` file is saved in the same directory as the gameplay script.
+
+
+### Step 3: Run the Controller
+
+Now you are ready to play.
+
+1. Open your target game in a web browser (e.g., Karate Fighter).
+
+2. Run the gameplay script:
+
+
+```
+python gameplay_with_KNN.py
+```
+
+3. Focus the Window: Click on the game window once to ensure it receives keyboard inputs.
+
+4. Stand back and control the character with your movements!
+
+## 🎮 Controls
+
+The system maps the following physical gestures to keyboard keys:
+
+| Gesture | Key Mapped | Action |
+| ---------- | ---------- | ---------- |
+| Extend both arms to the sides|W|Character Jumps|
+| Crouch|S|Character Crouches|
+| Extend Arm to Left|A|Move Left|
+| Extend Arm to Right|D|Move Right|
+| Make a Fist with Left or Right|L|Low Punch|
+| Make a Fist with both Left and Right|I|High Punch|
+| Lift and Extend Right Leg Forward|K|Strong Kick Attack|
+| Lift Left Leg just above ground| J |High Kick Attack|
+| Wakanda Forever| U |Combo Hit|
+| Stand straight with Arms Extended down|-|No Move, Stays Idle|
+
+### Demonstration Video
+<video width="630" height="300" src="Demostration.mp4" controls></video>
+
+## ⚠️ Troubleshooting
+
+- Camera not opening? Ensure no other application (Zoom, Teams) is using the webcam.
+
+- Model not found? Verify that optimized_karate_model.pkl exists in the root folder before running the gameplay script.
+
+- Low Accuracy? Try re-running Step 1 and recording more diverse samples for the problematic gesture.
