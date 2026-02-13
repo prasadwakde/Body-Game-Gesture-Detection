@@ -3,8 +3,9 @@
 This project implements a **real-time body gesture–controlled gaming system** using computer vision and machine learning. A webcam is used to capture a player’s body movements, extract pose landmarks, classify gestures, and map them to keyboard inputs that control games. The system removes the need for traditional input devices such as keyboards or controllers and enables players to interact with games using natural body movements.
 
 The project explores **two gesture-based gaming setups**:
-- A **4-gesture control system** for *Temple Run*
-- A **10-gesture control system** for *Karate Fighter*
+
+- A **4-gesture control system** for _Temple Run_
+- A **10-gesture control system** for _Karate Fighter_
 
 Pose estimation is performed using **MediaPipe Pose** and it detects the movements in 4 gesture game. For 10 gesture game, multiple machine learning models were evaluated. Based on real-time performance and accuracy, **K-Nearest Neighbors (KNN)** was selected as the final model, achieving approximately **90% accuracy** in live gameplay.
 
@@ -12,13 +13,17 @@ Pose estimation is performed using **MediaPipe Pose** and it detects the movemen
 
 ## 4-Gesture Game – Temple Run
 
-The 4-gesture setup focuses on simple, intuitive body movements to control the *Temple Run* game. This version emphasizes low latency and ease of use.
+The 4-gesture setup focuses on simple, intuitive body movements to control the _Temple Run_ game. This version emphasizes low latency and ease of use.
+
+**Try the game yourself**  
+[Temple Run on Poki](https://poki.com/en/g/temple-run-2)
 
 **Gestures Used**
-- Jump  
-- Duck  
-- Move Left  
-- Move Right  
+
+- Jump
+- Duck
+- Move Left
+- Move Right
 
 Each gesture is detected using pose landmarks and mapped directly to keyboard inputs required by the game. This setup demonstrates real-time gesture control with minimal gesture complexity.
 
@@ -26,7 +31,7 @@ Each gesture is detected using pose landmarks and mapped directly to keyboard in
 
 ## 10-Gesture Game – Karate Fighter
 
-The 10-gesture setup controls the *Karate Fighter* game and supports more complex movements, including punches, kicks, and combo actions.
+The 10-gesture setup controls the _Karate Fighter_ game and supports more complex movements, including punches, kicks, and combo actions.
 
 **Try the game yourself**  
 [Karate Fighter on Poki](https://poki.com/en/g/karate-fighter?msockid=3cd585d569666c481db3901368666d1a)
@@ -35,15 +40,16 @@ The 10-gesture setup controls the *Karate Fighter* game and supports more comple
 The system captures full-body movements through a webcam, classifies gestures such as punches, kicks, crouches, and combos, and simulates corresponding keyboard presses in real time.
 
 **Supported Gestures**
-- Jump  
-- Crouch  
-- Move Left  
-- Move Right  
-- Low Punch  
-- High Punch  
-- Strong Kick  
-- High Kick  
-- Combo Hit  
+
+- Jump
+- Crouch
+- Move Left
+- Move Right
+- Low Punch
+- High Punch
+- Strong Kick
+- High Kick
+- Combo Hit
 - Neutral (Idle)
 
 ---
@@ -58,19 +64,19 @@ The system captures full-body movements through a webcam, classifies gestures su
 
 - **Models**  
   Contains experiments with multiple machine learning models:
-  - Decision Trees  
-  - Support Vector Machine (SVM)  
-  - XGBoost / Extra Trees  
+  - Decision Trees
+  - Support Vector Machine (SVM)
+  - XGBoost / Extra Trees
   - Random Forest  
-  The final system uses **KNN**, as it achieved the best real-time performance with approximately **90% accuracy**.
+    The final system uses **KNN**, as it achieved the best real-time performance with approximately **90% accuracy**.
 
 - **Results**  
   Contains live demo recordings, gameplay videos, and outputs of the working gesture-controlled system.
 
 - **Python Scripts**
-  - `optimized_collection.py` – Gesture data collection  
-  - `optimized_trainer.py` – Model training  
-  - `gameplay_with_KNN.py` – Real-time gameplay controller  
+  - `optimized_collection.py` – Gesture data collection
+  - `optimized_trainer.py` – Model training
+  - `gameplay_with_KNN.py` – Real-time gameplay controller
 
 ---
 
@@ -81,25 +87,31 @@ Ensure Python is installed along with the required libraries:
 ```bash
 pip install opencv-python mediapipe pandas numpy scikit-learn joblib pydirectinput
 ```
+
 ---
 
 # Usage Instructions
 
 ## Step 1: Data Collection
+
 ```bash
 python optimized_collection.py
 ```
+
 ## Step 2: Train the Model
+
 ```bash
 python optimized_trainer.py
 ```
+
 ## Step 3: Run the Controller
+
 ```bash
 python gameplay_with_KNN.py
 ```
+
 - Click on the game window once
 - Control the character using body gestures
-
 
 # Troubleshooting
 
@@ -110,8 +122,7 @@ python gameplay_with_KNN.py
 - Low accuracy? Record more diverse gesture samples and retrain the model
 
 # Partcipants
+
 - Glenn Paul Aby
 - Prasad Deepak Wakde
 - Samrudhi Ramesh Rao
-
-
