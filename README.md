@@ -1,101 +1,117 @@
-## Gesture Control Karate System
+## Gesture Control Gaming System
 
-This project uses computer vision and machine learning to control a karate game using real-time body gestures. It captures your pose via a webcam, classifies the move (e.g., Punch, Kick, Crouch), and simulates the corresponding keyboard press.
+This project implements a **real-time body gesture–controlled gaming system** using computer vision and machine learning. A webcam is used to capture a player’s body movements, extract pose landmarks, classify gestures, and map them to keyboard inputs that control games. The system removes the need for traditional input devices such as keyboards or controllers and enables players to interact with games using natural body movements.
 
-### Tryout the game on your own - [Karate Fighter Poki](https://poki.com/en/g/karate-fighter?msockid=3cd585d569666c481db3901368666d1a)
- 
+The project explores **two gesture-based gaming setups**:
+- A **4-gesture control system** for *Temple Run*
+- A **10-gesture control system** for *Karate Fighter*
 
+Pose estimation is performed using **MediaPipe Pose** and it detects the movements in 4 gesture game. For 10 gesture game, multiple machine learning models were evaluated. Based on real-time performance and accuracy, **K-Nearest Neighbors (KNN)** was selected as the final model, achieving approximately **90% accuracy** in live gameplay.
 
+---
 
-### GamePlay with Karate Fighter Game
-<video width="630" height="300" src="GamePlay.mp4" controls></video>
+## 4-Gesture Game – Temple Run
 
-📋 Prerequisites
+The 4-gesture setup focuses on simple, intuitive body movements to control the *Temple Run* game. This version emphasizes low latency and ease of use.
 
-Ensure you have Python installed along with the required libraries:
-```
+**Gestures Used**
+- Jump  
+- Duck  
+- Move Left  
+- Move Right  
+
+Each gesture is detected using pose landmarks and mapped directly to keyboard inputs required by the game. This setup demonstrates real-time gesture control with minimal gesture complexity.
+
+---
+
+## 10-Gesture Game – Karate Fighter
+
+The 10-gesture setup controls the *Karate Fighter* game and supports more complex movements, including punches, kicks, and combo actions.
+
+**Try the game yourself**  
+[Karate Fighter on Poki](https://poki.com/en/g/karate-fighter?msockid=3cd585d569666c481db3901368666d1a)
+
+**Game Concept**  
+The system captures full-body movements through a webcam, classifies gestures such as punches, kicks, crouches, and combos, and simulates corresponding keyboard presses in real time.
+
+**Supported Gestures**
+- Jump  
+- Crouch  
+- Move Left  
+- Move Right  
+- Low Punch  
+- High Punch  
+- Strong Kick  
+- High Kick  
+- Combo Hit  
+- Neutral (Idle)
+
+---
+
+## Project Folder Overview
+
+- **4_gestures_finalCode**  
+  Contains the final implementation for the Temple Run game using 4 basic gestures.
+
+- **10_gestures_FinalCode**  
+  Contains the final implementation for the Karate Fighter game using 10 gestures.
+
+- **Models**  
+  Contains experiments with multiple machine learning models:
+  - Decision Trees  
+  - Support Vector Machine (SVM)  
+  - XGBoost / Extra Trees  
+  - Random Forest  
+  The final system uses **KNN**, as it achieved the best real-time performance with approximately **90% accuracy**.
+
+- **Results**  
+  Contains live demo recordings, gameplay videos, and outputs of the working gesture-controlled system.
+
+- **Python Scripts**
+  - `optimized_collection.py` – Gesture data collection  
+  - `optimized_trainer.py` – Model training  
+  - `gameplay_with_KNN.py` – Real-time gameplay controller  
+
+---
+
+## Prerequisites
+
+Ensure Python is installed along with the required libraries:
+
+```bash
 pip install opencv-python mediapipe pandas numpy scikit-learn joblib pydirectinput
 ```
+---
 
-## 🚀 Usage Instructions
+# Usage Instructions
 
-Follow these three steps to set up and run the controller.
-
-### Step 1: Data Collection
-First, you need to record your own body gestures to create the dataset.
-
-1. Run the collection script:
-
-```
+## Step 1: Data Collection
+```bash
 python optimized_collection.py
 ```
-2. Select a Gesture: Press `N` to toggle between gestures (e.g., Punch, Kick, Jump).
-
-3. Record: Press `SPACE` to start.
-    - The system acts as a 10-second timer.
-    - After a 3-second countdown, perform the gesture continuously for 10 seconds.
-
-4. Repeat this for all 8 gestures to populate `karate_optimized_data.csv`
-
-
-
-
-### Step 2: Train the Model
-
-Once the data is collected, train the machine learning model.
-
-1. Run the training script:
-
-
-```
+## Step 2: Train the Model
+```bash
 python optimized_trainer.py
 ```
-2. This script processes the CSV file, trains a KNN classifier, and exports the weights to `optimized_karate_model.pkl`.
-
-3. Note: Ensure the `.pkl` file is saved in the same directory as the gameplay script.
-
-
-### Step 3: Run the Controller
-
-Now you are ready to play.
-
-1. Open your target game in a web browser (e.g., Karate Fighter).
-
-2. Run the gameplay script:
-
-
-```
+## Step 3: Run the Controller
+```bash
 python gameplay_with_KNN.py
 ```
+- Click on the game window once
+- Control the character using body gestures
 
-3. Focus the Window: Click on the game window once to ensure it receives keyboard inputs.
 
-4. Stand back and control the character with your movements!
+# Troubleshooting
 
-## 🎮 Controls
+- Camera not opening? Ensure no other application is using the webcam
 
-The system maps the following physical gestures to keyboard keys:
+- Model not found? Verify optimized_karate_model.pkl exists
 
-| Gesture | Key Mapped | Action |
-| ---------- | ---------- | ---------- |
-| Extend both arms to the sides|W|Character Jumps|
-| Crouch|S|Character Crouches|
-| Extend Arm to Left|A|Move Left|
-| Extend Arm to Right|D|Move Right|
-| Make a Fist with Left or Right|L|Low Punch|
-| Make a Fist with both Left and Right|I|High Punch|
-| Lift and Extend Right Leg Forward|K|Strong Kick Attack|
-| Lift Left Leg just above ground| J |High Kick Attack|
-| Wakanda Forever| U |Combo Hit|
-| Stand straight with Arms Extended down|-|No Move, Stays Idle|
+- Low accuracy? Record more diverse gesture samples and retrain the model
 
-### Demonstration Video
-<video width="630" height="300" src="Demostration.mp4" controls></video>
+# Partcipants
+- Glenn Paul Aby
+- Prasad Deepak Wakde
+- Samrudhi Ramesh Rao
 
-## ⚠️ Troubleshooting
 
-- Camera not opening? Ensure no other application (Zoom, Teams) is using the webcam.
-
-- Model not found? Verify that optimized_karate_model.pkl exists in the root folder before running the gameplay script.
-
-- Low Accuracy? Try re-running Step 1 and recording more diverse samples for the problematic gesture.
