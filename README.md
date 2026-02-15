@@ -39,19 +39,22 @@ The 10-gesture setup controls the _Karate Fighter_ game and supports more comple
 **Game Concept**  
 The system captures full-body movements through a webcam, classifies gestures such as punches, kicks, crouches, and combos, and simulates corresponding keyboard presses in real time.
 
-**Supported Gestures**
+**Controls** 
 
-- Jump
-- Crouch
-- Move Left
-- Move Right
-- Low Punch
-- High Punch
-- Strong Kick
-- High Kick
-- Combo Hit
-- Neutral (Idle)
+The system maps the following physical gestures to keyboard keys:
 
+| Gesture | Key Mapped | Action |
+| ---------- | ---------- | ---------- |
+| Extend both arms to the sides|W|Character Jumps|
+| Crouch|S|Character Crouches|
+| Extend Arm to Left|A|Move Left|
+| Extend Arm to Right|D|Move Right|
+| Make a Fist with Left or Right|L|Low Punch|
+| Make a Fist with both Left and Right|I|High Punch|
+| Lift and Extend Right Leg Forward|K|Strong Kick Attack|
+| Lift Left Leg just above ground| J |High Kick Attack|
+| Wakanda Forever| U |Combo Hit|
+| Stand straight with Arms Extended down|-|No Move, Stays Idle|
 ---
 
 ## Project Folder Overview
