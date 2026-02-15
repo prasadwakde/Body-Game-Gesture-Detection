@@ -116,6 +116,11 @@ python gameplay_with_KNN.py
 - Click on the game window once
 - Control the character using body gestures
 
+#  Demonstration Video
+▶️ [Watch Demo Video](https://drive.google.com/file/d/1eAFeLSRwX_myB8Nm9I6voXBK2ro8zClB/view?usp=sharing)
+
+
+
 # Troubleshooting
 
 - Camera not opening? Ensure no other application is using the webcam
