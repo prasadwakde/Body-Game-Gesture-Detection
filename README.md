@@ -121,7 +121,7 @@ python gameplay_with_KNN.py
 
 - Low accuracy? Record more diverse gesture samples and retrain the model
 
-# Partcipants
+# Participants
 
 - Glenn Paul Aby
 - Prasad Deepak Wakde
